@@ -1,0 +1,108 @@
+#pragma once
+
+#include "DeviceFrameGrabber.h"
+
+namespace Euresys
+{
+	class EGenTL;
+	class ScopedBuffer;
+}
+
+namespace Ravid
+{
+	namespace Algorithms
+	{
+		class CRavidImage;
+	}
+
+	namespace Device
+	{
+		class MyGrabber;
+
+		class AFX_EXT_CLASS CDeviceEuresysCoaxlinkHX : public CDeviceFrameGrabber
+		{
+		public:
+			RavidUseDynamicCreation();
+
+			RavidPreventCopySelf(CDeviceEuresysCoaxlinkHX);
+
+			DECLARE_DYNAMIC(CDeviceEuresysCoaxlinkHX)
+
+			enum eCoaxlinkModuleType
+			{
+				eCoaxlinkModuleType_System = 0,
+				eCoaxlinkModuleType_Interface,
+				eCoaxlinkModuleType_Device,
+				eCoaxlinkModuleType_Stream,
+				eCoaxlinkModuleType_Remote
+			};
+
+		public:
+			CDeviceEuresysCoaxlinkHX();
+			virtual ~CDeviceEuresysCoaxlinkHX();
+
+			virtual EDeviceInitializeResult Initialize() override;
+			virtual EDeviceTerminateResult Terminate() override;
+
+			virtual bool LoadSettings() override;
+
+			virtual EDeviceGrabResult Grab() override;
+			virtual EDeviceLiveResult Live() override;
+			virtual EDeviceStopResult Stop() override;
+
+			virtual EDeviceTriggerResult Trigger();
+
+			virtual EEuresysGetFunction GetEuresysPath(_Out_ CString* pParam);
+			virtual EEuresysSetFunction SetEuresysPath(_In_ CString strParam);
+
+			virtual EEuresysGetFunction GetCamfileName(_Out_ CString* pParam);
+			virtual EEuresysSetFunction SetCamfileName(_In_ CString strParam);
+
+			virtual EEuresysGetFunction GetBufferCount(_Out_ int* pParam);
+			virtual EEuresysSetFunction SetBufferCount(_In_ int nParam);
+
+			Euresys::EGenTL* GetDevice();
+
+			virtual bool OnParameterChanged(_In_ int nParam, _In_ CString strValue) override;
+
+			virtual void CreateImageBuffer(_In_ int nCount);
+
+			virtual Algorithms::CRavidImage* GetImageInfo();
+		protected:
+			virtual bool DoesModuleExist();
+			bool MakeNewBuffer(_In_ int nSizeX, _In_ int nSizeY, _In_opt_ EDeviceEGrabberPixelFormat ePixelFormat = EDeviceEGrabberPixelFormat_Mono8);
+
+		public:
+			UINT LiveThread(Euresys::ScopedBuffer* pBuffer, int id);
+
+		public:
+			DECLARE_MESSAGE_MAP()
+
+		protected:
+			Euresys::EGenTL* m_pTL = nullptr;
+			MyGrabber* m_pEGrabber = nullptr;
+
+			Ravid::Algorithms::CRavidImage** m_pImageBuffer = nullptr;
+			int m_nCount = 0;
+			int m_nImageCount = 1;
+
+			//reference
+		public:
+			virtual int64_t __getInteger(eCoaxlinkModuleType eType, std::string& feature);
+			virtual void __setInteger(eCoaxlinkModuleType eType, std::string& feature, int64_t value);
+
+			virtual double __getFloat(eCoaxlinkModuleType eType, std::string& feature);
+			virtual void __setFloat(eCoaxlinkModuleType eType, std::string& feature, double value);
+
+			virtual std::string __getString(eCoaxlinkModuleType eType, std::string& feature);
+			virtual void __setString(eCoaxlinkModuleType eType, std::string& feature, std::string& value);
+
+			virtual void __execute(eCoaxlinkModuleType eType, std::string value);
+
+			void __CallReallocBuffer();
+			void __CallResetBufferQueue();
+		};
+	}
+}
+
+

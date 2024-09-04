@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.2092
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3dViewerTest", "3dViewerTest\3dViewerTest.vcxproj", "{F5C74A53-231E-44C6-8B71-589982C5E43D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Debug|x64.ActiveCfg = Debug|x64
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Debug|x64.Build.0 = Debug|x64
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Debug|x86.ActiveCfg = Debug|Win32
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Debug|x86.Build.0 = Debug|Win32
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Release|x64.ActiveCfg = Release|x64
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Release|x64.Build.0 = Release|x64
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Release|x86.ActiveCfg = Release|Win32
+		{F5C74A53-231E-44C6-8B71-589982C5E43D}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27F69F8B-3A86-479A-8B71-3CE2AD852F07}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://mvtech.co.kr:8080/tfs/raviduser
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = 3dViewerTest\\3dViewerTest.vcxproj
+		SccProjectName1 = 3dViewerTest
+		SccLocalPath1 = 3dViewerTest
+	EndGlobalSection
+EndGlobal
